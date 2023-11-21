@@ -50,10 +50,10 @@
 
 @code {
 
-    Product _model = new();
-    List<Category> _categories = new();
+    private Product _model = new();
+    private List<Category> _categories = new();
     string? _errorMessage = null;
-
+    
     protected override async Task OnInitializedAsync()
     {
         _categories = await _context.Categories.AsNoTracking().ToListAsync();

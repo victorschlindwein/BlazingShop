@@ -12,6 +12,7 @@
             <td>#</td>
             <td>Title</td>
             <td>Price</td>
+            <td>Category</td>
             <td></td>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
                 <td>@product.Id</td>
                 <td>@product.Title</td>
                 <td>@product.Price.ToString("C")</td>
+                <td>@product.Category.Title</td>
                 <td>
                     <a href="/products/edit/@product.Id">EDIT</a>
                     <a href="/products/delete/@product.Id">DELETE</a>
@@ -36,6 +38,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _products = await _context.Products.AsNoTracking().ToListAsync();
+        _products = await _context.Products.AsNoTracking().Include(x=> x.Category).ToListAsync();
     }
 }
